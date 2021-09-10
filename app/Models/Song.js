@@ -7,7 +7,7 @@ export default class Song {
     this.album = data.collectionName || data.album;
     this.price = data.trackPrice || data.price;
     this.preview = data.previewUrl || data.preview;
-    this.id = data.trackId || data._id;
+    this.id = data.trackId?.toString() || data.id;
   }
 
   get Template() {
@@ -31,6 +31,7 @@ export default class Song {
     <img src="${this.albumArt}">
     <audio src=${this.preview} controls></audio>
     </div>
+    <button class ="btn btn-danger" onclick="app.songsController.removeSong('${this.id}')">Delete</button>
     `
   }
 }
